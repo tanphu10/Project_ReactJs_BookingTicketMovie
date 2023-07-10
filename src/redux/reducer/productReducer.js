@@ -1,3 +1,5 @@
+import { DAT_GHE, HUY_GHE } from "../types/productTypes";
+
 const initialState = {
   arrProduct: [
     {
@@ -193,20 +195,30 @@ const initialState = {
 
 export const productReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "DATGHE":
-      {
-        let listDangDatUpdate = [...state.listGheDangDat];
-        let index = listDangDatUpdate.findIndex(
-          (gheDangDat) => gheDangDat.soGhe === action.payload?.soGhe
-        );
-        if (index !== -1) {
-          listDangDatUpdate.splice(index, 1);
-        } else {
-          listDangDatUpdate.push(action.ghe);
-        }
-        return { ...state,listGheDangDat: [...listDangDatUpdate]};
+    case DAT_GHE: {
+      let listDangDatUpdate = [...state.listGheDangDat];
+      let index = listDangDatUpdate.findIndex(
+        (gheDangDat) => gheDangDat.soGhe === action.ghe.soGhe
+      );
+      // console.log(gheDangDat);
+      if (index !== -1) {
+        listDangDatUpdate.splice(index, 1);
+      } else {
+        listDangDatUpdate.push(action.ghe);
       }
- 
+      return { ...state, listGheDangDat: [...listDangDatUpdate] };
+    }
+    case HUY_GHE: {
+      let listDangDatUpdate = [...state.listGheDangDat];
+      let index = listDangDatUpdate.findIndex(
+        (gheDangDat) => gheDangDat.soGhe === action.soGhe
+      );
+      // console.log(gheDangDat);
+      if (index !== -1) {
+        listDangDatUpdate.splice(index, 1);
+      }
+      return { ...state, listGheDangDat: [...listDangDatUpdate] };
+    }
     default:
       return { ...state };
   }

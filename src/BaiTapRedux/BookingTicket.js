@@ -29,12 +29,12 @@ class BookingTicket extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-8 text-center">
-                <div className=" text-light  fs-2">
+                <div className="  text-light  fs-2">
                   BOOKING TICKET CINEMA.VN
                 </div>
-                <div className="my-2 text-white">Màn Hình</div>
-                <div className="my-1 d-flex flex-column justify-content-center">
-                  <div className="screen ms-5"></div>
+                <div className="my-3 text-white">Màn Hình</div>
+                <div className="my-2 d-flex flex-column justify-content-center">
+                  <div className="screen" style={{marginLeft:"35px"}}></div>
                   {this.props.product.arrProduct.map((item, index) => {
                     return (
                       <HangGhe item={item} soHangGhe={index} key={index} />

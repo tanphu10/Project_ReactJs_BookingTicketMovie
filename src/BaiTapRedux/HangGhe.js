@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { datGheAction } from "../redux/actions/productAction";
 
 class HangGhe extends Component {
   renderGhe = () => {
@@ -15,10 +16,11 @@ class HangGhe extends Component {
       let indexGheDangDat = this.props.product.findIndex(
         (gheDangDat) => gheDangDat.soGhe === ghe.soGhe
       );
+      // console.log(indexGheDangDat);
       if (indexGheDangDat != -1) {
         cssGheDangDat = "gheDangChon";
       }
-      console.log(ghe);
+      // console.log(ghe);
       return (
         <button
           onClick={() => {
@@ -37,7 +39,11 @@ class HangGhe extends Component {
   renderspan = () => {
     return this.props.item.danhSachGhe.map((span, index) => {
       return (
-        <button className="rowNumber" key={index}>
+        <button
+          className="rowNumber"
+          style={{ marginLeft: "16px" }}
+          key={index}
+        >
           {span.soGhe}
         </button>
       );
@@ -47,23 +53,26 @@ class HangGhe extends Component {
   renderHangGhe = () => {
     if (this.props.soHangGhe === 0) {
       return (
-        <div className="me-4" style={{ marginLeft: "25px" }}>
+        <div className="ms-5" style={{ marginLeft: "25px" }}>
           {this.props.item.hang} {this.renderspan()}
         </div>
       );
     } else {
       return (
-        <div>
-          {this.props.item.hang} {this.renderGhe()}
+        <div className="row">
+          <div className="col-1 text-center p-0 m-0">
+            {this.props.item.hang}{" "}
+          </div>
+          <div className="col-11 m-0 px-0">{this.renderGhe()}</div>
         </div>
       );
     }
   };
   render() {
-    console.log(this.props.item);
+    // console.log(this.props.item);
     return (
       <div
-        className="text-light ms-5"
+        className="text-light ms-3"
         style={{ textAlign: "left", fontSize: "25px" }}
       >
         {this.renderHangGhe()}
@@ -80,11 +89,11 @@ const mapStateToProps = (state) => {
 const mapDishpatchToProps = (dispatch) => {
   return {
     addGhe: (ghe) => {
-      const action = {
-        type: "DATGHE",
-        ghe,
-      };
-      dispatch(action);
+      // const action = {
+      //   type: "DATGHE",
+      //   ghe,
+      // };
+      dispatch(datGheAction(ghe));
     },
   };
 };
